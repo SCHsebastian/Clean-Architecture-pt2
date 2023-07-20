@@ -1,5 +1,5 @@
 buildscript {
-    ext{
+    ext {
         javaCompileVersion = JavaVersion.VERSION_17
         jvmTarget = '17'
         defaultCompileSdkVersion = 33
@@ -28,6 +28,9 @@ buildscript {
                 okhttp             : '4.11.0',
                 retrofit           : "2.9.0",
                 moshi              : '1.15.0',
+
+                room               : "2.4.0",
+                dataStore          : "1.0.0",
         ]
 
         gradlePlugins = [
@@ -76,6 +79,13 @@ buildscript {
                 retrofitMoshi: "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
                 moshi        : "com.squareup.moshi:moshi:${versions.moshi}",
                 moshiKotlin  : "com.squareup.moshi:moshi-kotlin:${versions.moshi}"
+        ]
+
+        persistence = [
+                roomRuntime : "androidx.room:room-runtime:${versions.room}",
+                roomKtx     : "androidx.room:room-ktx:${versions.room}",
+                roomCompiler: "androidx.room:room-compiler:${versions.room}",
+                dataStore   : "androidx.datastore:datastore-preferences:${versions.dataStore}"
         ]
 
         repositories {
