@@ -1,0 +1,3 @@
+package es.queryinformatica.data_local.source
+
+internal class LocalPostDataSourceImplTest
