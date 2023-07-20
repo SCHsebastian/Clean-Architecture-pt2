@@ -23,7 +23,11 @@ buildscript {
                 junit              : "4.13.2",
                 mockito            : "5.0.0",
                 espressoJunit      : "1.1.5",
-                espressoCore       : "3.5.1"
+                espressoCore       : "3.5.1",
+
+                okhttp             : '4.11.0',
+                retrofit           : "2.9.0",
+                moshi              : '1.15.0',
         ]
 
         gradlePlugins = [
@@ -64,6 +68,14 @@ buildscript {
                 junit             : "androidx.test.ext:junit:${versions.espressoJunit}",
                 espressoCore      : "androidx.test.espresso:espresso-core:${versions.espressoCore}",
                 composeUiTestJunit: "androidx.compose.ui:ui-test-junit4:${versions.compose}"
+        ]
+
+        network = [
+                okHttp       : "com.squareup.okhttp3:okhttp:${versions.okHttp}",
+                retrofit     : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                retrofitMoshi: "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
+                moshi        : "com.squareup.moshi:moshi:${versions.moshi}",
+                moshiKotlin  : "com.squareup.moshi:moshi-kotlin:${versions.moshi}"
         ]
 
         repositories {

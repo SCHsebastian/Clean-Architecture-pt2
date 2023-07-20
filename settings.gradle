@@ -16,3 +16,4 @@ rootProject.name = "Clean Architecturept2"
 include ':app'
 include ':domain'
 include ':data-repository'
+include ':data-remote'
