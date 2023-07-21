@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'es.queryinformatica.presentation_posts'
+    namespace 'es.queryinformatica.presentation_user'
     compileSdk defaultCompileSdkVersion
 
     defaultConfig {
@@ -56,5 +56,4 @@ dependencies {
     testImplementation test.junit
     testImplementation test.coroutines
     testImplementation test.mockito
-
 }

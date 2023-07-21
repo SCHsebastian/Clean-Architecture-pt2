@@ -1,11 +1,12 @@
-package es.queryinformatica.presentation_posts
+package es.queryinformatica.presentation_posts.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import es.queryinformatica.domain.entity.Interaction
 import es.queryinformatica.domain.usecase.GetPostsWithUsersWithInteractionUseCase
-import es.queryinformatica.presentation_posts.list.PostListModel
-import es.queryinformatica.presentation_posts.list.UiState
+import es.queryinformatica.domain.usecase.UpdateInteractionUseCase
+import es.queryinformatica.presentation_common.state.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -16,6 +17,7 @@ import javax.inject.Inject
 class PostListViewModel @Inject constructor(
     private val useCase: GetPostsWithUsersWithInteractionUseCase,
     private val converter: PostListConverter,
+    private val updateInteraction: UpdateInteractionUseCase
 ) : ViewModel() {
 
     private val _postListFlow = MutableStateFlow<UiState<PostListModel>>(UiState.Loading)
@@ -31,6 +33,14 @@ class PostListViewModel @Inject constructor(
                 }
         }
 
+    }
+
+    fun updateInteraction(interaction: Interaction) {
+        viewModelScope.launch {
+            updateInteraction.execute(UpdateInteractionUseCase.Request(
+                interaction.copy(totalClicks = interaction.totalClicks + 1)
+            ))
+        }
     }
 
 }

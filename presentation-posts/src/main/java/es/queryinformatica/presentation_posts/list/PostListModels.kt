@@ -1,5 +1,7 @@
 package es.queryinformatica.presentation_posts.list
 
+import es.queryinformatica.domain.entity.Interaction
+
 
 data class PostListItemModel(
     val id: Long,
@@ -11,4 +13,5 @@ data class PostListItemModel(
 data class PostListModel (
     val headerText: String = "",
     val posts: List<PostListItemModel> = listOf(),
+    val interaction: Interaction
 )

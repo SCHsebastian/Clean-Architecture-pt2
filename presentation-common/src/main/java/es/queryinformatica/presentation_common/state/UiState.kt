@@ -1,4 +1,4 @@
-package es.queryinformatica.presentation_posts.list
+package es.queryinformatica.presentation_common.state
 
 sealed class UiState<out T : Any> {
 

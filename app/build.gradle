@@ -49,6 +49,8 @@ android {
 }
 
 dependencies {
+    implementation(project(path: ":presentation-common"))
+    implementation(project(path: ":presentation-user"))
     implementation(project(path: ":presentation-posts"))
     implementation(project(path: ":domain"))
     implementation(project(path: ":data-remote"))
