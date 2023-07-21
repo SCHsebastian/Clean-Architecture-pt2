@@ -15,11 +15,9 @@ internal val KEY_TOTAL_TAPS = intPreferencesKey("key_total_taps")
 class LocalInteractionDataSourceImpl @Inject constructor(private val dataStore: DataStore<Preferences>) : LocalInteractionDataSource {
 
     override fun getInteraction(): Flow<Interaction> {
-
         return dataStore.data.map {
             Interaction(it[KEY_TOTAL_TAPS] ?: 0)
         }
-
     }
 
     override suspend fun saveInteraction(interaction: Interaction) {
