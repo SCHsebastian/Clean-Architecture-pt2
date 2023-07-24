@@ -6,9 +6,8 @@ import es.queryinformatica.domain.entity.Post
 import es.queryinformatica.domain.repository.PostRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
-class PostRepositoryImpl @Inject constructor(
+class PostRepositoryImpl (
     private val remotePostDataSource: RemotePostDataSource,
     private val localPostDataSource: LocalPostDataSource
 ) : PostRepository {

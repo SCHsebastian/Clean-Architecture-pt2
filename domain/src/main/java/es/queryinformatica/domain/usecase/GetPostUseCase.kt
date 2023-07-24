@@ -4,9 +4,8 @@ import es.queryinformatica.domain.entity.Post
 import es.queryinformatica.domain.repository.PostRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class GetPostUseCase @Inject constructor(
+class GetPostUseCase(
     configuration: Configuration,
     private val postRepository: PostRepository,
 ) : UseCase<GetPostUseCase.Request, GetPostUseCase.Response>(configuration){

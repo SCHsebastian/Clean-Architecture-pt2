@@ -7,9 +7,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 
-class InteractionRepositoryImpl @Inject constructor(
+class InteractionRepositoryImpl (
     private val interactionDataSource: LocalInteractionDataSource
 ) : InteractionRepository {
 

@@ -3,9 +3,8 @@ package es.queryinformatica.domain.usecase
 import es.queryinformatica.domain.repository.InteractionRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class UpdateInteractionUseCase @Inject constructor(
+class UpdateInteractionUseCase(
     configuration: Configuration,
     private val interactionRepository: InteractionRepository
 ) : UseCase<UpdateInteractionUseCase.Request, UpdateInteractionUseCase.Response>(configuration) {
