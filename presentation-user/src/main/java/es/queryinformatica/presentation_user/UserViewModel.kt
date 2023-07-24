@@ -1,11 +1,10 @@
 package es.queryinformatica.presentation_user
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import es.queryinformatica.domain.usecase.GetUserUseCase
+import es.queryinformatica.presentation_common.MviViewModel
 import es.queryinformatica.presentation_common.state.UiState
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,20 +13,26 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(
     private val useCase: GetUserUseCase,
     private val converter: UserConverter,
-): ViewModel() {
+): MviViewModel<UserModel, UiState<UserModel>, UserUiAction, UserUiSingleEvent>() {
 
-    private val _userFlow = MutableStateFlow<UiState<UserModel>>(UiState.Loading)
-    val userFlow: MutableStateFlow<UiState<UserModel>> = _userFlow
+    override fun initState(): UiState<UserModel> = UiState.Loading
 
-    fun loadUser(userId: Long) {
+    override fun handleAction(action: UserUiAction) {
+        when(action){
+            is UserUiAction.Load -> loadUser(action.userId)
+        }
+    }
+
+    private fun loadUser(userId: Long) {
         viewModelScope.launch {
             useCase.execute(
                 GetUserUseCase.Request(userId)
             ).map {
                 converter.convert(it)
             }.collect {
-                _userFlow.value = it
+                submitState(it)
             }
         }
     }
+
 }

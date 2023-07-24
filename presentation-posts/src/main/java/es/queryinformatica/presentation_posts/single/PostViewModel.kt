@@ -1,11 +1,10 @@
 package es.queryinformatica.presentation_posts.single
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import es.queryinformatica.domain.usecase.GetPostUseCase
+import es.queryinformatica.presentation_common.MviViewModel
 import es.queryinformatica.presentation_common.state.UiState
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,19 +13,23 @@ import javax.inject.Inject
 class PostViewModel @Inject constructor(
     private val useCase: GetPostUseCase,
     private val converter: PostConverter,
-) : ViewModel(){
+) : MviViewModel<PostModel, UiState<PostModel>, PostUiAction, PostUiSingleEvent>(){
 
-    private val _postFlow = MutableStateFlow<UiState<PostModel>>(UiState.Loading)
-    val postFlow: MutableStateFlow<UiState<PostModel>> = _postFlow
+    override fun initState(): UiState<PostModel> = UiState.Loading
+    override fun handleAction(action: PostUiAction) {
+        when(action){
+            is PostUiAction.Load -> loadPost(action.postId)
+        }
+    }
 
-    fun loadPost(postId: Long){
+    private fun loadPost(postId: Long){
         viewModelScope.launch {
             useCase.execute(
                 GetPostUseCase.Request(postId)
             ).map {
                 converter.convert(it)
             }.collect {
-                _postFlow.value = it
+                submitState(it)
             }
         }
     }

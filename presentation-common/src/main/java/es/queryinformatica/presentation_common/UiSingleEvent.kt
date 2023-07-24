@@ -1,0 +1,3 @@
+package es.queryinformatica.presentation_common
+
+interface UiSingleEvent
