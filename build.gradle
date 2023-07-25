@@ -20,11 +20,6 @@ buildscript {
                 activityCompose         : "1.7.2",
                 hilt                    : "2.47",
 
-                junit                   : "4.13.2",
-                mockito                 : "5.0.0",
-                espressoJunit           : "1.1.5",
-                espressoCore            : "3.5.1",
-
                 okhttp                  : '4.11.0',
                 retrofit                : "2.9.0",
                 moshi                   : '1.15.0',
@@ -34,8 +29,16 @@ buildscript {
 
                 viewModel               : "2.5.1",
                 navigationCompose       : "2.5.3",
-                hiltNavigationCompose   : "1.0.0"
+                hiltNavigationCompose   : "1.0.0",
 
+                junit                   : "4.13.2",
+                mockito                 : "5.0.0",
+                espressoJunit           : "1.1.5",
+                espressoCore            : "3.5.1",
+
+                androidTestCore         : "1.5.0",
+                androidTestJunit        : "1.1.5",
+                orchestrator            : "1.4.2"
         ]
 
         gradlePlugins = [
@@ -79,7 +82,15 @@ buildscript {
         androidTest = [
                 junit             : "androidx.test.ext:junit:${versions.espressoJunit}",
                 espressoCore      : "androidx.test.espresso:espresso-core:${versions.espressoCore}",
-                composeUiTestJunit: "androidx.compose.ui:ui-test-junit4:${versions.compose}"
+                idlingResource    : "androidx.test.espresso:espresso-idling-resource:${versions.espressoCore}",
+                composeUiTestJunit: "androidx.compose.ui:ui-test-junit4:${versions.compose}",
+                composeManifest   : "androidx.compose.ui:ui-test-manifest:${versions.compose}",
+                hilt              : "com.google.dagger:hilt-android-testing:${versions.hilt}",
+                hiltCompiler      : "com.google.dagger:hilt-android-compiler:${versions.hilt}",
+                core              : "androidx.test:core:${versions.androidTestCore}",
+                runner            : "androidx.test:runner:${versions.androidTestCore}",
+                rules             : "androidx.test:rules:${versions.androidTestCore}",
+                orchestrator      : "androidx.test:orchestrator:${versions.orchestrator}"
         ]
 
         network = [

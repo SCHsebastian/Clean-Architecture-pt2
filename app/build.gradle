@@ -15,7 +15,10 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "es.queryinformatica.cleanarchitecturept2.CleanArchAppTestRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+        testOptions { execution 'ANDROIDX_TEST_ORCHESTRATOR' }
+
         vectorDrawables {
             useSupportLibrary true
         }
@@ -70,5 +73,20 @@ dependencies {
     implementation di.hiltAndroid
     kapt di.hiltCompiler
 
+    //Test
+
     testImplementation test.junit
+
+    androidTestImplementation androidTest.espressoCore
+    androidTestImplementation androidTest.idlingResource
+    androidTestImplementation androidTest.core
+    androidTestImplementation androidTest.rules
+    androidTestImplementation androidTest.runner
+    androidTestImplementation androidTest.composeUiTestJunit
+    androidTestImplementation androidTest.hilt
+
+    debugImplementation androidTest.composeManifest
+    kaptAndroidTest androidTest.hiltCompiler
+
+    androidTestUtil androidTest.orchestrator
 }
